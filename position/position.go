@@ -9,7 +9,18 @@ type position struct {
 	lng int8 // 1-8
 }
 
+type Direction int8
+
+const (
+	North Direction = iota
+	West
+	East
+	South
+)
+
 type Position interface {
+	Step(direction Direction) Position
+	Walk(direction Direction) []Position
 	North() Position
 	South() Position
 	West() Position
@@ -86,6 +97,30 @@ func (p position) West() Position {
 
 func (p position) Valid() bool {
 	return p.lat >= 0 && p.lng >= 0 && p.lat <= 7 && p.lng <= 7
+}
+
+func (p position) Step(direction Direction) Position {
+	switch direction {
+	case North:
+		return p.North()
+	case East:
+		return p.East()
+	case West:
+		return p.West()
+	case South:
+		return p.South()
+	}
+	return invalidPosition
+}
+
+func (p position) Walk(direction Direction) []Position {
+	p2 := p.Step(direction)
+	var res []Position
+	for p2.Valid() {
+		res = append(res, p2)
+		p2 = p2.Step(direction)
+	}
+	return res
 }
 
 func (p position) String() string {

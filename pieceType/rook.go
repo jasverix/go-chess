@@ -14,30 +14,9 @@ func Rook() PieceType {
 
 func (r rook) PossibleTargets(pos position.Position, _ color.Color) []position.Position {
 	var positions []position.Position
-
-	p := pos.North()
-	for p.Valid() {
-		positions = append(positions, p)
-		p = p.North()
-	}
-
-	p = pos.South()
-	for p.Valid() {
-		positions = append(positions, p)
-		p = p.South()
-	}
-
-	p = pos.West()
-	for p.Valid() {
-		positions = append(positions, p)
-		p = p.West()
-	}
-
-	p = pos.East()
-	for p.Valid() {
-		positions = append(positions, p)
-		p = p.East()
-	}
-
+	positions = append(positions, pos.Walk(position.North)...)
+	positions = append(positions, pos.Walk(position.West)...)
+	positions = append(positions, pos.Walk(position.East)...)
+	positions = append(positions, pos.Walk(position.South)...)
 	return positions
 }
