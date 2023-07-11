@@ -12,7 +12,7 @@ func Bishop() PieceType {
 	return bishop{}
 }
 
-func (r bishop) PossibleTargets(pos position.Position, _ color.Color) []position.Position {
+func (r bishop) PossibleTargets(pos position.Position, _ color.Color, _ MoveMode) []position.Position {
 	var positions []position.Position
 	positions = append(positions, pos.Walk(position.NorthWest)...)
 	positions = append(positions, pos.Walk(position.NorthEast)...)

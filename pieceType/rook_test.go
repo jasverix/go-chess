@@ -9,7 +9,7 @@ import (
 )
 
 func TestRook_PossibleTargets(t *testing.T) {
-	targets := Rook().PossibleTargets(position.FromString("D5"), color.White)
+	targets := Rook().PossibleTargets(position.FromString("D5"), color.White, 0)
 	targetStrings := make([]string, len(targets))
 	for i := range targets {
 		targetStrings[i] = targets[i].String()

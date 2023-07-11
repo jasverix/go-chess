@@ -11,19 +11,31 @@ func Pawn() PieceType {
 	return pawn{}
 }
 
-func (p pawn) PossibleTargets(pos position.Position, col color.Color) []position.Position {
-	switch col {
-	case color.Black:
-		return []position.Position{
-			pos.South(),
-			pos.South().East(),
-			pos.South().West(),
+func (p pawn) PossibleTargets(pos position.Position, col color.Color, mode MoveMode) []position.Position {
+	switch mode {
+	case Normal:
+		switch col {
+		case color.Black:
+			return []position.Position{
+				pos.South(),
+			}
+		case color.White:
+			return []position.Position{
+				pos.North(),
+			}
 		}
-	case color.White:
-		return []position.Position{
-			pos.North(),
-			pos.North().East(),
-			pos.North().West(),
+	case Attack:
+		switch col {
+		case color.Black:
+			return []position.Position{
+				pos.South().East(),
+				pos.South().West(),
+			}
+		case color.White:
+			return []position.Position{
+				pos.North().East(),
+				pos.North().West(),
+			}
 		}
 	}
 	return []position.Position{}

@@ -12,7 +12,7 @@ func Rook() PieceType {
 	return rook{}
 }
 
-func (r rook) PossibleTargets(pos position.Position, _ color.Color) []position.Position {
+func (r rook) PossibleTargets(pos position.Position, _ color.Color, _ MoveMode) []position.Position {
 	var positions []position.Position
 	positions = append(positions, pos.Walk(position.North)...)
 	positions = append(positions, pos.Walk(position.West)...)

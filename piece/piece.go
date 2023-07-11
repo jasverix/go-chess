@@ -11,7 +11,7 @@ type Piece interface {
 	Type() pieceType.PieceType
 	Position() position.Position
 
-	PossibleTargets() []position.Position
+	PossibleTargets(pieceType.MoveMode) []position.Position
 }
 
 type piece struct {
@@ -36,9 +36,9 @@ func (p piece) Position() position.Position {
 	return p.position
 }
 
-func (p piece) PossibleTargets() []position.Position {
+func (p piece) PossibleTargets(moveMode pieceType.MoveMode) []position.Position {
 	var targets []position.Position
-	for _, pos := range p.pieceType.PossibleTargets(p.position, p.color) {
+	for _, pos := range p.pieceType.PossibleTargets(p.position, p.color, moveMode) {
 		if pos.Valid() {
 			targets = append(targets, pos)
 		}

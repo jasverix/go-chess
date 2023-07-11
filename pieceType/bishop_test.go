@@ -9,7 +9,7 @@ import (
 )
 
 func TestBishop_PossibleTargets(t *testing.T) {
-	targets := Bishop().PossibleTargets(position.FromString("D5"), color.White)
+	targets := Bishop().PossibleTargets(position.FromString("D5"), color.White, 0)
 	targetStrings := make([]string, len(targets))
 	for i := range targets {
 		targetStrings[i] = targets[i].String()

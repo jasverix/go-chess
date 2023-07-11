@@ -12,7 +12,7 @@ func King() PieceType {
 	return king{}
 }
 
-func (k king) PossibleTargets(pos position.Position, _ color.Color) []position.Position {
+func (k king) PossibleTargets(pos position.Position, _ color.Color, _ MoveMode) []position.Position {
 	return []position.Position{
 		pos.Step(position.North),
 		pos.Step(position.NorthEast),
