@@ -21,7 +21,7 @@ type piece struct {
 }
 
 func New(pieceType pieceType.PieceType, color color.Color, position position.Position) Piece {
-	return &piece{position, color, pieceType}
+	return piece{position, color, pieceType}
 }
 
 func (p piece) Color() color.Color {
